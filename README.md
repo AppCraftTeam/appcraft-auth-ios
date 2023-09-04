@@ -46,5 +46,5 @@ Damian Bazhenov | [Github][CreatorGithub]
 [//]: # (Links)
   [Changelog]: /Changelog.md
   [ACGSGuide]: /Sources/ACAuth/ACAuth.docc/GettingStarted.md
-  [ACAuthDocs]: /Sources/ACAuth/ACAuth.docc
+  [ACAuthDocs]: /Documentation/v1/
   [CreatorGithub]: https://github.com/uxn0w

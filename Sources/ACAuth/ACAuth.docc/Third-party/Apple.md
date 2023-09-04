@@ -3,13 +3,13 @@
 ## Topics
 
 ### Abstract
-- ``AppleAuthServiceInterface``
+- ``ACAppleAuthServiceInterface``
 
 ### Implementation
-- ``AppleAuthService``
+- ``ACAppleAuthService``
 
 ### Domains 
-- ``AppleAuthenticationData``
+- ``ACAppleAuthenticationData``
 
 ### Types 
-- ``AppleAuthenticationHandler``
+- ``ACAppleAuthenticationHandler``

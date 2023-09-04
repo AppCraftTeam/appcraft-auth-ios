@@ -3,10 +3,10 @@
 ## Topics
 
 ### Abstract
-- ``FacebookAuthServiceInterface``
+- ``ACFacebookAuthServiceInterface``
 
 ### Implementations
-- ``FacebookAuthService``
+- ``ACFacebookAuthService``
 
 ### Domains
-- ``FacebookPermissionType``
+- ``ACFacebookPermissionType``

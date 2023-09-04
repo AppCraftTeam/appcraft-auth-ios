@@ -71,7 +71,7 @@ public enum ACAuthError: Error {
     /// - authorizationError: Apple auth error.
     /// - nilWhileUnwrappingAuthorizationToken: Nil while unwrapping `AuthorizationToken`.
     /// - nilWhileUnwrappingAuthorizationAppleIDCredential: Nil while unwrapping `IDCredential`.
-    public enum AppleAuthenticationError: Error {
+    public enum ACAppleAuthenticationError: Error {
         /// The nounce is empty.
         case invalidNonce
         /// Undefined error.
@@ -188,7 +188,7 @@ public enum ACAuthError: Error {
     /// Represents the error reason during vk auth phase.
     case vkAuthenticationError(reason: VKAuthenticationError)
     /// Represents the error reason during apple auth phase.
-    case appleAuthenticationError(reason: AppleAuthenticationError)
+    case appleAuthenticationError(reason: ACAppleAuthenticationError)
     /// Represents the error reason during firebase auth phase.
     case firebaseAuthenticationError(reason: FIRAuthenticationError)
     /// Represents the error reason during google auth phase.
@@ -296,8 +296,8 @@ extension ACAuthError.ResponseError: LocalizedError {
     }
 }
 
-// MARK: - AppleAuthenticationError errorDescription
-extension ACAuthError.AppleAuthenticationError: LocalizedError {
+// MARK: - ACAppleAuthenticationError errorDescription
+extension ACAuthError.ACAppleAuthenticationError: LocalizedError {
     public var errorDescription: String? {
         let prefix = "Apple auth failed."
         switch self {

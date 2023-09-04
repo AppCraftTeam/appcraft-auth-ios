@@ -7,7 +7,7 @@ Initialize Google service in your app.
 import ACAuth
 ```
 
-2. Configure using the ``GoogleAuthService/handle(url:)`` method of the ``GoogleAuthService`` object in your app delegate's `application(_:didFinishLaunchingWithOptions:)` method:
+2. Configure using the ``ACGoogleAuthService/handle(url:)`` method of the ``ACGoogleAuthService`` object in your app delegate's `application(_:didFinishLaunchingWithOptions:)` method:
 
 ```swift 
 func application(
@@ -15,7 +15,7 @@ func application(
     open url: URL,
     options: [UIApplication.OpenURLOptionsKey: Any] = [:]
 ) -> Bool {
-    GoogleAuthService.handle(url: url)
+    ACGoogleAuthService.handle(url: url)
     return true
 }
 ```
@@ -23,12 +23,12 @@ func application(
 ## Topics
 
 ### Abstract
-- ``GoogleAuthServiceInterface``
+- ``ACGoogleAuthServiceInterface``
 
 ### Implementations 
-- ``GoogleAuthService``
+- ``ACGoogleAuthService``
 
 ### Domains
-- ``GoogleProfile``
-- ``GoogleAuthServiceRestoreSignInState``
+- ``ACGoogleProfile``
+- ``ACGoogleAuthServiceRestoreSignInState``
 - ``GIDDisconnectCallback``

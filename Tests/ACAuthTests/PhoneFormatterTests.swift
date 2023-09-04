@@ -5,7 +5,7 @@ final class PhoneFormatterTests: XCTestCase {
     
     private var original = ""
     
-    @PhoneFormatter
+    @ACPhoneFormatter
     private var formatted = ""
     
     func test_inject_valid_number() {

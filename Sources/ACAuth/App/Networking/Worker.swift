@@ -7,8 +7,6 @@
 
 import Foundation
 
-public typealias ExecuteHandler<T: Codable> = (_ result: T?, _ response: HTTPURLResponse?, _ error: ACAuthError?) -> Void
-
 protocol WorkerInterface: AnyObject {
     func execute(_ request: URLRequest, completion: @escaping (_ result: Data?, _ response: HTTPURLResponse?, _ error: Error?) -> Void)
 }

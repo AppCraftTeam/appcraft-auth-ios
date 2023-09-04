@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 /// Firebase Authentication to sign in a user by email/password.
-open class FIRPasswordAuthProvider: FIRAuthPerformer {
+open class FIRPasswordAuthProvider: ACFIRAuthPerformer {
     
     // MARK: Properties
     private let firAuth = Auth.auth()
@@ -42,7 +42,7 @@ open class FIRPasswordAuthProvider: FIRAuthPerformer {
     
     // MARK: - Perform auth
 
-    public func logIn(handler: @escaping FIRAuthCallback) {
+    public func logIn(handler: @escaping ACFIRAuthCallback) {
         guard !email.isEmpty else {
             self.outputQueue.invoke(
                 handler,
@@ -60,7 +60,7 @@ open class FIRPasswordAuthProvider: FIRAuthPerformer {
         self.logIn(email: email, password: password, handler: handler)
     }
     
-    open func logIn(email: String, password: String, handler: @escaping FIRAuthCallback) {
+    open func logIn(email: String, password: String, handler: @escaping ACFIRAuthCallback) {
         self.firAuth.signIn(withEmail: email, password: password, completion: { (data, error) in
             self.resetData()
             if let data = data {
@@ -76,10 +76,10 @@ open class FIRPasswordAuthProvider: FIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension FIRAuthPerformer where Self == FIRPasswordAuthProvider {
+public extension ACFIRAuthPerformer where Self == FIRPasswordAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a email and password.
     /// - Returns: Basic authorization performer.
-    static func password(email: String, password: String) -> FIRAuthPerformer {
+    static func password(email: String, password: String) -> ACFIRAuthPerformer {
         FIRPasswordAuthProvider(email: email, password: password)
     }
 }

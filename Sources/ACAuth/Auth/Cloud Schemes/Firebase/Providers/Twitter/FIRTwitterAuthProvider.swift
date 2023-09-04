@@ -8,8 +8,8 @@
 import FirebaseAuth
 
 /// A provider object that represents `Firebase` authentication with `Twitter`.
-open class FIRTwitterAuthProvider: FIRAuthProvider, FIRAuthPerformer {
-    open func logIn(handler: @escaping FIRAuthCallback) {
+open class FIRTwitterAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
+    open func logIn(handler: @escaping ACFIRAuthCallback) {
         OAuthProvider(providerID: "twitter.com").getCredentialWith(nil) { (credential, error) in
             guard let credential = credential else {
                 self.outputQueue.invoke(
@@ -26,7 +26,7 @@ open class FIRTwitterAuthProvider: FIRAuthProvider, FIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension FIRAuthPerformer where Self == FIRTwitterAuthProvider {
+public extension ACFIRAuthPerformer where Self == FIRTwitterAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Twitter`.
     /// - Returns: Twitter authorization performer.
     static func twitter() -> FIRTwitterAuthProvider where Self: FIRTwitterAuthProvider {

@@ -48,7 +48,7 @@ class URLRequestGenerator: RequestBuilder {
     var parameters: RequestParams
     
     init(
-        source: RemoteSource,
+        source: ACRemoteSource,
         method: HTTPMethod = .get,
         headers: [String: String]?,
         parameters: RequestParams,

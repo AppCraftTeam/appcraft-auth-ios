@@ -9,17 +9,17 @@ import Firebase
 import GoogleSignIn
 
 /// A provider object that represents `Firebase` authentication with `Google`.
-open class FIRGoogleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
+open class FIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
     
     // MARK: Properties
-    private let googleService: GoogleAuthServiceInterface
+    private let googleService: ACGoogleAuthServiceInterface
     
     // MARK: - Initialization
-    /// Creates `FIRGoogleAuthProvider` instance with custom auth service
+    /// Creates ``FIRGoogleAuthProvider`` instance with custom auth service
     ///
-    /// The area for presenting auth window should be defined in `GoogleAuthServiceInterface`.
+    /// The area for presenting auth window should be defined in ``ACGoogleAuthServiceInterface``.
     /// - Parameter service: Represents Google auth service.
-    public init(service: GoogleAuthServiceInterface) {
+    public init(service: ACGoogleAuthServiceInterface) {
         self.googleService = service
     }
     
@@ -28,7 +28,7 @@ open class FIRGoogleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
     ///   - configuration: This class represents the client configuration provided by the developer.
     ///   - targetView: Area for auth window
     public init(configuration: GIDConfiguration, targetView: UIViewController?) {
-        self.googleService = GoogleAuthService(
+        self.googleService = ACGoogleAuthService(
             configuration: configuration,
             targetView: targetView
         )
@@ -45,7 +45,7 @@ open class FIRGoogleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
     // MARK: - Perform auth
     /// Description
     /// - Parameter handler: handler description
-    open func logIn(handler: @escaping FIRAuthCallback) {
+    open func logIn(handler: @escaping ACFIRAuthCallback) {
         self.googleService.signIn(handler: { (result) in
             switch result {
             case let .success(profile):
@@ -70,13 +70,13 @@ open class FIRGoogleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension FIRAuthPerformer where Self == FIRGoogleAuthProvider {
+public extension ACFIRAuthPerformer where Self == FIRGoogleAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Google`.
     /// - Parameters:
-    ///   - clientID: Permission list. See more ``FacebookPermissionType``.
+    ///   - clientID: Permission list. See more ``ACFacebookPermissionType``.
     ///   - targetView: The view controller to present from.
     /// - Returns: Google authorization performer.
-    static func google(clientID: String, targetView: UIViewController? = .topViewController) -> FIRAuthPerformer {
+    static func google(clientID: String, targetView: UIViewController? = .topViewController) -> ACFIRAuthPerformer {
         FIRGoogleAuthProvider(configuration: .init(clientID: clientID), targetView: targetView)
     }
 }

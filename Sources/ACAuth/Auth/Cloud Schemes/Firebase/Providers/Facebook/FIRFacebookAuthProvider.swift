@@ -10,36 +10,36 @@ import FirebaseAuth
 import FacebookLogin
 
 /// A provider object that represents `Firebase` authentication with a `Facebook`.
-open class FIRFacebookAuthProvider: FIRAuthProvider, FIRAuthPerformer {
+open class FIRFacebookAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
 
     // MARK: Properties
-    private let facebookService: FacebookAuthServiceInterface
+    private let facebookService: ACFacebookAuthServiceInterface
     
     // MARK: - Initialization
     
     /// Creates `FIRAppleAuthProvider` instance with custom auth service.
     /// - Parameters:
     ///   - service: Facebook authorization service. See more ``FacebookAuthServiceInterface``.
-    public init(service: FacebookAuthServiceInterface) {
+    public init(service: ACFacebookAuthServiceInterface) {
         self.facebookService = service
     }
     
     /// Creates `FIRAppleAuthProvider` instance.
     /// - Parameters:
-    ///   - permissions: Permission list. See more ``FacebookPermissionType``.
+    ///   - permissions: Permission list. See more ``ACFacebookPermissionType``.
     ///   - targetView: The view controller to present from.
-    public init(permissions: [FacebookPermissionType], targetView: UIViewController?) {
-        self.facebookService = FacebookAuthService(permissions: permissions, targetView: targetView)
+    public init(permissions: [ACFacebookPermissionType], targetView: UIViewController?) {
+        self.facebookService = ACFacebookAuthService(permissions: permissions, targetView: targetView)
     }
     /// Creates `FIRAppleAuthProvider` instance.
     ///
     /// By default, the topmost view controller in the navigation stack must be used as the target of the view.
-    public convenience init(permissions: [FacebookPermissionType]) {
+    public convenience init(permissions: [ACFacebookPermissionType]) {
         self.init(permissions: permissions, targetView: .topViewController)
     }
     
     // MARK: - Perform auth
-    open func logIn(handler: @escaping FIRAuthCallback) {
+    open func logIn(handler: @escaping ACFIRAuthCallback) {
         self.facebookService.signIn(handler: { (result) in
             switch result {
             case let .success(token):
@@ -57,16 +57,16 @@ open class FIRFacebookAuthProvider: FIRAuthProvider, FIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension FIRAuthPerformer where Self == FIRFacebookAuthProvider {
+public extension ACFIRAuthPerformer where Self == FIRFacebookAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Facebook`.
     /// - Parameters:
-    ///   - permissions: Permission list. See more ``FacebookPermissionType``.
+    ///   - permissions: Permission list. See more ``ACFacebookPermissionType``.
     ///   - targetView: The view controller to present from.
     /// - Returns: Facebook authorization performer.
     static func facebook(
-        permissions: [FacebookPermissionType],
+        permissions: [ACFacebookPermissionType],
         targetView: UIViewController? = .topViewController
-    ) -> FIRAuthPerformer {
+    ) -> ACFIRAuthPerformer {
         FIRFacebookAuthProvider(permissions: permissions, targetView: targetView)
     }
 }

@@ -9,16 +9,16 @@ import FirebaseAuth
 import AuthenticationServices
 
 /// A provider object that represents `Firebase` authentication with a `Apple`.
-open class FIRAppleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
+open class FIRAppleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
     
     // MARK: Properties
-    private let appleAuthenticationService: AppleAuthServiceInterface
+    private let appleAuthenticationService: ACAppleAuthServiceInterface
     
     // MARK: - Initialization
     /// Creates `FIRAppleAuthProvider` instance with custom auth service.
     /// - Parameters:
     ///   - service: Apple authorization service. See more ``AppleAuthServiceInterface``.
-    public init(service: AppleAuthServiceInterface) {
+    public init(service: ACAppleAuthServiceInterface) {
         self.appleAuthenticationService = service
     }
     
@@ -26,11 +26,11 @@ open class FIRAppleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
     /// - Parameters:
     ///   - scopes: The kinds of contact information that can be requested from the user.
     public convenience init(scopes: [ASAuthorization.Scope]) {
-        self.init(service: AppleAuthService(scopes: scopes))
+        self.init(service: ACAppleAuthService(scopes: scopes))
     }
     
     // MARK: - Perform auth
-    open func logIn(handler: @escaping FIRAuthCallback) {
+    open func logIn(handler: @escaping ACFIRAuthCallback) {
         self.appleAuthenticationService.logIn(handler: { (result) in
             switch result {
             case let .success(data):
@@ -52,12 +52,12 @@ open class FIRAppleAuthProvider: FIRAuthProvider, FIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension FIRAuthPerformer where Self == FIRAppleAuthProvider {
+public extension ACFIRAuthPerformer where Self == FIRAppleAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Apple`.
     /// - Parameters:
     ///   - scopes: The kinds of contact information that can be requested from the user.
     /// - Returns: Apple authorization performer.
-    static func apple(scopes: [ASAuthorization.Scope] = [.fullName, .email]) -> FIRAuthPerformer {
+    static func apple(scopes: [ASAuthorization.Scope] = [.fullName, .email]) -> ACFIRAuthPerformer {
         FIRAppleAuthProvider(scopes: scopes)
     }
 }

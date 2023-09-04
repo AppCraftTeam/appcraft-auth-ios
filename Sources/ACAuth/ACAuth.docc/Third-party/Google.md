@@ -29,6 +29,6 @@ func application(
 - ``GoogleAuthService``
 
 ### Domains
-- ``GoogleProfile``
-- ``GoogleAuthServiceRestoreSignInState``
+- ``ACGoogleProfile``
+- ``ACGoogleAuthServiceRestoreSignInState``
 - ``GIDDisconnectCallback``

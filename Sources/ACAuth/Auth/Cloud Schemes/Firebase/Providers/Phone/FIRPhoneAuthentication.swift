@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 /// Firebase Authentication to sign in a user by sending an SMS message to the user's phone.
-open class FIRPhoneAuthProvider: FIRAuthProvider {
+open class FIRPhoneAuthProvider: ACFIRAuthProvider {
    
     /// Authentication Key
     private var verificationID: String? {
@@ -22,7 +22,7 @@ open class FIRPhoneAuthProvider: FIRAuthProvider {
     /// - Parameters:
     ///   - number: Phone number. Goes through a formatting process.
     ///   - handler: The callback to be invoked when the verification flow is finished.
-    open func verifyPhone(@PhoneFormatter number: String, handler: @escaping (Result<String, ACAuthError>) -> Void) {
+    open func verifyPhone(@ACPhoneFormatter number: String, handler: @escaping (Result<String, ACAuthError>) -> Void) {
         self.provider.verifyPhoneNumber(number, uiDelegate: nil) { (verificationID, error) in
             guard let verificationID = verificationID else {
                 self.outputQueue.invoke(handler, with: .failure(.undefined))
@@ -38,7 +38,7 @@ open class FIRPhoneAuthProvider: FIRAuthProvider {
     ///
     /// - Parameters:
     ///   - handler: Invoked asynchronously on the main thread in the future and included `Result` with helper object that contains the result of a successful sign-in, link and reauthenticate action.
-    open func verifyCodeAndAuth(code: String, handler: @escaping FIRAuthCallback) {
+    open func verifyCodeAndAuth(code: String, handler: @escaping ACFIRAuthCallback) {
         guard let key = verificationID else {
             self.outputQueue.invoke(
                 handler,

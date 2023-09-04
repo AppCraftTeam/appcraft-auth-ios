@@ -9,7 +9,7 @@
 - ``AppleAuthService``
 
 ### Domains 
-- ``AppleAuthenticationData``
+- ``ACAppleAuthenticationData``
 
 ### Types 
-- ``AppleAuthenticationHandler``
+- ``ACAppleAuthenticationHandler``

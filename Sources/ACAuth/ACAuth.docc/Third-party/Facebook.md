@@ -9,4 +9,4 @@
 - ``FacebookAuthService``
 
 ### Domains
-- ``FacebookPermissionType``
+- ``ACFacebookPermissionType``

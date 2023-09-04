@@ -30,7 +30,7 @@ public protocol ACServerPhoneAuthenticationProtocol {
     /// - Parameters:
     ///   - key: SMS request key.
     ///   - code: SMS code.
-    ///   - handler: A callback block that takes a result with ``JWTToken`` or an ``ACAuthError`` if the attempt
+    ///   - handler: A callback block that takes a result with ``ACJWT`` or an ``ACAuthError`` if the attempt
     ///             to verification request key and specified code was unsuccessful.
     ///             By default, yhe block will be called asynchronously on the `main queue`.
     func verifyCodeAndAuth(key: String, code: String, handler: @escaping (Result<ACJWT, ACAuthError>) -> Void)

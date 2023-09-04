@@ -1,5 +1,5 @@
 //
-//  FIRFacebookAuthProvider.swift
+//  ACFIRFacebookAuthProvider.swift
 //  ACAuth
 //
 //  Created by AppCraft LLC on 31.08.2023.
@@ -10,7 +10,7 @@ import FirebaseAuth
 import FacebookLogin
 
 /// A provider object that represents `Firebase` authentication with a `Facebook`.
-open class FIRFacebookAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
+open class ACFIRFacebookAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
 
     // MARK: Properties
     private let facebookService: ACFacebookAuthServiceInterface
@@ -19,7 +19,7 @@ open class FIRFacebookAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
     
     /// Creates `FIRAppleAuthProvider` instance with custom auth service.
     /// - Parameters:
-    ///   - service: Facebook authorization service. See more ``FacebookAuthServiceInterface``.
+    ///   - service: Facebook authorization service. See more ``ACFacebookAuthServiceInterface``.
     public init(service: ACFacebookAuthServiceInterface) {
         self.facebookService = service
     }
@@ -57,7 +57,7 @@ open class FIRFacebookAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension ACFIRAuthPerformer where Self == FIRFacebookAuthProvider {
+public extension ACFIRAuthPerformer where Self == ACFIRFacebookAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Facebook`.
     /// - Parameters:
     ///   - permissions: Permission list. See more ``ACFacebookPermissionType``.
@@ -67,6 +67,6 @@ public extension ACFIRAuthPerformer where Self == FIRFacebookAuthProvider {
         permissions: [ACFacebookPermissionType],
         targetView: UIViewController? = .topViewController
     ) -> ACFIRAuthPerformer {
-        FIRFacebookAuthProvider(permissions: permissions, targetView: targetView)
+        ACFIRFacebookAuthProvider(permissions: permissions, targetView: targetView)
     }
 }

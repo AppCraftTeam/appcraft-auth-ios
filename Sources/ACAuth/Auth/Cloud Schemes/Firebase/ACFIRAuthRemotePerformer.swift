@@ -7,6 +7,8 @@
 
 import FirebaseAuth
 
+public typealias ACFIRPerformerResult = Result<ACJWT, ACAuthError>
+
 /// A type describing 3-step firebase authorization with your server.
 ///
 /// The Performer performs the following tasks:
@@ -15,8 +17,8 @@ import FirebaseAuth
 /// 3. Create credentials and log in to the firebase service.
 /// 4. Transfer your firebase ID Token to the remote server and get any permissions.
 public protocol ACFIRAuthRemotePerformerProtocol {
-    func auth(data: AuthDataResult, handler: @escaping (Result<ACJWT, ACAuthError>) -> Void)
-    func auth(with service: ACFIRAuthPerformer, handler: @escaping (Result<ACJWT, ACAuthError>) -> Void)
+    func auth(data: AuthDataResult, handler: @escaping (ACFIRPerformerResult) -> Void)
+    func auth(with service: ACFIRAuthPerformer, handler: @escaping (ACFIRPerformerResult) -> Void)
     func auth<R: Codable>(data: AuthDataResult, responseType: R.Type, handler: @escaping (Result<R, ACAuthError>) -> Void)
     func auth<R: Codable>(with service: ACFIRAuthPerformer, responseType: R.Type, handler: @escaping (Result<R, ACAuthError>) -> Void)
 }
@@ -24,22 +26,22 @@ public protocol ACFIRAuthRemotePerformerProtocol {
 /// An object that implements the authorization methods described in ``ACFIRAuthRemotePerformerProtocol``.
 open class ACFIRAuthRemotePerformer: ACServerAuthenticator, ACFIRAuthRemotePerformerProtocol {
     
-    public var provider: ACFIRRemoteSpecification
+    public var spec: ACFIRRemoteSpecification
     
-    public convenience init(provider: ACFIRRemoteSpecification) {
-        self.init(provider: provider, executor: ACRequestExecutor())
+    public convenience init(spec: ACFIRRemoteSpecification) {
+        self.init(spec: spec, executor: ACRequestExecutor())
     }
     
-    public init(provider: ACFIRRemoteSpecification, executor: ACRequestExecutor) {
-        self.provider = provider
+    public init(spec: ACFIRRemoteSpecification, executor: ACRequestExecutor) {
+        self.spec = spec
         super.init(executor: executor)
     }
     
-    open func auth(data: AuthDataResult, handler: @escaping (Result<ACJWT, ACAuthError>) -> Void) {
+    open func auth(data: AuthDataResult, handler: @escaping (ACFIRPerformerResult) -> Void) {
         self.auth(data: data, responseType: ACJWT.self, handler: handler)
     }
     
-    open func auth(with service: ACFIRAuthPerformer, handler: @escaping (Result<ACJWT, ACAuthError>) -> Void) {
+    open func auth(with service: ACFIRAuthPerformer, handler: @escaping (ACFIRPerformerResult) -> Void) {
         self.auth(with: service, responseType: ACJWT.self, handler: handler)
     }
     
@@ -74,10 +76,10 @@ open class ACFIRAuthRemotePerformer: ACServerAuthenticator, ACFIRAuthRemotePerfo
     
     open func generateRequest(firebaseIDToken: String) throws -> URLRequest {
         try URLRequestGenerator(
-            source: provider.source,
+            source: spec.source,
             method: .post,
-            headers: provider.headers,
-            parameters: .json([provider.tokenPassingParameterKey: firebaseIDToken])
+            headers: spec.headers,
+            parameters: .json([spec.tokenPassingParameterKey: firebaseIDToken])
         ).build()
     }
 }

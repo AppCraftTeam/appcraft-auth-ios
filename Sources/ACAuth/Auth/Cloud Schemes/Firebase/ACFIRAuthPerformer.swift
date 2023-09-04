@@ -15,6 +15,6 @@ public protocol ACFIRAuthPerformer {
     ///
     /// A method that performs authorization in a third-party service, then creates credentials data for authorization in the Firebase.
     ///
-    /// - Parameter handler: A callback block ``FIRAuthCallback``. By default, invoke in `main queue`.
+    /// - Parameter handler: A callback block ``ACFIRAuthCallback``. By default, invoke in `main queue`.
     func logIn(handler: @escaping ACFIRAuthCallback)
 }

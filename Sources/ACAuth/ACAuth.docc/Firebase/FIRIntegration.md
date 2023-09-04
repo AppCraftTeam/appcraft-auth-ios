@@ -1,10 +1,9 @@
-# Overview
+# Integration guide
 
-## Integration guide
-### Step 1: Create a Firebase project
+## Step 1: Create a Firebase project
 Before you can add Firebase to your Apple app, you need to create a Firebase project to connect to your app. Visit Understand Firebase Projects to learn more about Firebase projects.
 
-### Step 2: Register your app with Firebase
+## Step 2: Register your app with Firebase
 To use Firebase in your Apple app, you need to register your app with your Firebase project. 
 Registering your app is often called "adding" your app to your project.
 
@@ -22,14 +21,14 @@ Registering your app is often called "adding" your app to your project.
 
 5. Click Register app.
 
-### Step 3: Add a Firebase configuration file
+## Step 3: Add a Firebase configuration file
 1. Click Download `GoogleService-Info.plist` to obtain your Firebase Apple platforms config file (`GoogleService-Info.plist`).
 
 2. Move your config file into the root of your Xcode project. If prompted, select to add the config file to all targets.
 
 If you have multiple bundle IDs in your project, you must associate each bundle ID with a registered app in the Firebase console so that each app can have its own `GoogleService-Info.plist file`.
 
-### Step 4: Initialize Firebase in your app
+## Step 4: Initialize Firebase in your app
 The final step is to add initialization code to your application. You may have already done this as part of adding Firebase to your app
 1. Import the ACAuth module in your UIApplicationDelegate.
 
@@ -37,27 +36,11 @@ The final step is to add initialization code to your application. You may have a
 import ACAuth
 ```
 
-2. Configure using the ``FIRAuth/configure()`` method of the ``FIRAuth`` object in your app delegate's `application(_:didFinishLaunchingWithOptions:)` method:
+2. Configure using the ``ACFIRAuth/configure()`` method of the ``ACFIRAuth`` object in your app delegate's `application(_:didFinishLaunchingWithOptions:)` method:
 
 ```swift 
-FIRAuth.configure()
+ACFIRAuth.configure()
 ```
 
-### Troubleshot
+## Troubleshot
 If you're having trouble getting set up, though, visit the [official documentation](https://firebase.google.com/docs/ios/setup?hl=en#swift).
-
-## Topics
-### Two-step firebase authorization.
-A simple mechanism that provides an easy way to perform authorization by selecting an authorization provider
-- ``FIRAuth``
-
-Auth protocol for Firebase services.
-- ``FIRAuthPerformer``
-
-### Three-step firebase authorization with you'r server.
-Modified FIRAuth mechanism that requires obtaining rights from an external source
-- ``FIRAuthRemotePerformer``
-- ``FIRAuthRemotePerformerProtocol``
-
-### See alos
-- ``FIRAuthCallback``

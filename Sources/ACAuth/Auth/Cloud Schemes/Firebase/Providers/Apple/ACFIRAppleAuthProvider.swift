@@ -1,5 +1,5 @@
 //
-//  FIRAppleAuthProvider.swift
+//  ACFIRAppleAuthProvider.swift
 //  ACAuth
 //
 //  Created by AppCraft LLC on 31.08.2023.
@@ -9,20 +9,20 @@ import FirebaseAuth
 import AuthenticationServices
 
 /// A provider object that represents `Firebase` authentication with a `Apple`.
-open class FIRAppleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
+open class ACFIRAppleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
     
     // MARK: Properties
     private let appleAuthenticationService: ACAppleAuthServiceInterface
     
     // MARK: - Initialization
-    /// Creates `FIRAppleAuthProvider` instance with custom auth service.
+    /// Creates `ACFIRAppleAuthProvider` instance with custom auth service.
     /// - Parameters:
-    ///   - service: Apple authorization service. See more ``AppleAuthServiceInterface``.
+    ///   - service: Apple authorization service. See more ``ACAppleAuthServiceInterface``.
     public init(service: ACAppleAuthServiceInterface) {
         self.appleAuthenticationService = service
     }
     
-    /// Creates `FIRAppleAuthProvider` instance.
+    /// Creates `ACFIRAppleAuthProvider` instance.
     /// - Parameters:
     ///   - scopes: The kinds of contact information that can be requested from the user.
     public convenience init(scopes: [ASAuthorization.Scope]) {
@@ -52,12 +52,12 @@ open class FIRAppleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension ACFIRAuthPerformer where Self == FIRAppleAuthProvider {
+public extension ACFIRAuthPerformer where Self == ACFIRAppleAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Apple`.
     /// - Parameters:
     ///   - scopes: The kinds of contact information that can be requested from the user.
     /// - Returns: Apple authorization performer.
     static func apple(scopes: [ASAuthorization.Scope] = [.fullName, .email]) -> ACFIRAuthPerformer {
-        FIRAppleAuthProvider(scopes: scopes)
+        ACFIRAppleAuthProvider(scopes: scopes)
     }
 }

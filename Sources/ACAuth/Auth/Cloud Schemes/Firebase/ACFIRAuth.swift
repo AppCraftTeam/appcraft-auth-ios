@@ -34,7 +34,7 @@ open class ACFIRAuth: ACFIRAuthPerformer {
     }
     
     /// Login method with the previously specified provider.
-    /// - Parameter handler: A callback block ``FIRAuthCallback``.
+    /// - Parameter handler: A callback block ``ACFIRAuthCallback``.
     open func logIn(handler: @escaping ACFIRAuthCallback) {
         self.provider.logIn(handler: handler)
     }
@@ -42,7 +42,7 @@ open class ACFIRAuth: ACFIRAuthPerformer {
     /// Login method with the specified provider.
     /// - Parameters:
     ///   - provider: Third-party auth service.
-    ///   - handler: A callback block ``FIRAuthCallback``.
+    ///   - handler: A callback block ``ACFIRAuthCallback``.
     open func logIn(provider: ACFIRAuthPerformer, handler: @escaping ACFIRAuthCallback) {
         self.provider = provider
         self.logIn(handler: handler)

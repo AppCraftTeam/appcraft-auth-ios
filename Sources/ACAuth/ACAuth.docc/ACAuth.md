@@ -17,12 +17,13 @@ You will find a friendly interface, ease of use and the necessary flexibility wh
 - <doc:Google>
 
 ### Firebase  
-- <doc:FIROverview>
-- <doc:FIRAuthProvider>
-- <doc:FIRAppleAuthProvider>
-- <doc:FIRFacebookAuthProvider>
-- <doc:FIRGoogleAuthProvider>
-- <doc:FIRPasswordAuthProvider>
-- <doc:FIRPhoneAuthProvider>
-- <doc:FIRTwitterAuthProvider>
+- <doc:FIRIntegration>
+- <doc:FIRUserManual>
+- <doc:ACFIRAuthProvider>
+- <doc:ACFIRAppleAuthProvider>
+- <doc:ACFIRFacebookAuthProvider>
+- <doc:ACFIRGoogleAuthProvider>
+- <doc:ACFIRPasswordAuthProvider>
+- <doc:ACFIRPhoneAuthProvider>
+- <doc:ACFIRTwitterAuthProvider>
 

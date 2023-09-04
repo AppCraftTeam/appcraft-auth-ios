@@ -1,5 +1,5 @@
 //
-//  FIRPhoneAuthProvider.swift
+//  ACFIRPhoneAuthProvider.swift
 //  ACAuth
 //
 //  Created by AppCraft LLC on 31.08.2023.
@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 /// Firebase Authentication to sign in a user by sending an SMS message to the user's phone.
-open class FIRPhoneAuthProvider: ACFIRAuthProvider {
+open class ACFIRPhoneAuthProvider: ACFIRAuthProvider {
    
     /// Authentication Key
     private var verificationID: String? {

@@ -33,7 +33,7 @@ public protocol ACAppleAuthServiceInterface: AnyObject {
     func performRequest(_ request: ASAuthorizationAppleIDRequest, handler: @escaping ACAppleAuthenticationHandler)
 }
 
-/// An object that implements the authorization instructions in the ``AuthenticationServices``.
+/// An object that implements the authorization instructions in the ``ACAppleAuthServiceInterface``.
 open class ACAppleAuthService: NSObject, ACAppleAuthServiceInterface {
     
     private var currentNonce: String = ""

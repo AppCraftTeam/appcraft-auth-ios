@@ -7,7 +7,7 @@
 
 import FacebookLogin
 
-/// A type that describing the method of auth in the ``Facebook``.
+/// A type that describing the method of auth in the `Facebook`.
 public protocol ACFacebookAuthServiceInterface {
     
     /// The view controller to present from.

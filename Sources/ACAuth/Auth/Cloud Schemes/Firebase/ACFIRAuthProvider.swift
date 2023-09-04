@@ -17,7 +17,7 @@ open class ACFIRAuthProvider {
     /// Sign in method.
     /// - Parameters:
     ///   - credential: Represents a credential. See more in [offical site](https://firebase.google.com/docs/reference/swift/firebaseauth/api/reference/Classes/AuthCredential).
-    ///   - handler: A callback block ``FIRAuthCallback``.
+    ///   - handler: A callback block ``ACFIRAuthCallback``.
     open func signIn(with credential: AuthCredential, handler: @escaping ACFIRAuthCallback) {
         self.auth.signIn(with: credential, completion: { (data, error) in
             if let data = data {

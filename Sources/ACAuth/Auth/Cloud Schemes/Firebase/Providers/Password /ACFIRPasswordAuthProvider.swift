@@ -1,5 +1,5 @@
 //
-//  FIRPasswordAuthProvider.swift
+//  ACFIRPasswordAuthProvider.swift
 //  ACAuth
 //
 //  Created by AppCraft LLC on 31.08.2023.
@@ -8,7 +8,7 @@
 import FirebaseAuth
 
 /// Firebase Authentication to sign in a user by email/password.
-open class FIRPasswordAuthProvider: ACFIRAuthPerformer {
+open class ACFIRPasswordAuthProvider: ACFIRAuthPerformer {
     
     // MARK: Properties
     private let firAuth = Auth.auth()
@@ -76,10 +76,10 @@ open class FIRPasswordAuthProvider: ACFIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension ACFIRAuthPerformer where Self == FIRPasswordAuthProvider {
+public extension ACFIRAuthPerformer where Self == ACFIRPasswordAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a email and password.
     /// - Returns: Basic authorization performer.
     static func password(email: String, password: String) -> ACFIRAuthPerformer {
-        FIRPasswordAuthProvider(email: email, password: password)
+        ACFIRPasswordAuthProvider(email: email, password: password)
     }
 }

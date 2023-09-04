@@ -1,5 +1,5 @@
 //
-//  FIRGoogleAuthProvider.swift
+//  ACFIRGoogleAuthProvider.swift
 //  ACAuth
 //
 //  Created by AppCraft LLC on 31.08.2023.
@@ -9,13 +9,13 @@ import Firebase
 import GoogleSignIn
 
 /// A provider object that represents `Firebase` authentication with `Google`.
-open class FIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
+open class ACFIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
     
     // MARK: Properties
     private let googleService: ACGoogleAuthServiceInterface
     
     // MARK: - Initialization
-    /// Creates ``FIRGoogleAuthProvider`` instance with custom auth service
+    /// Creates ``ACFIRGoogleAuthProvider`` instance with custom auth service
     ///
     /// The area for presenting auth window should be defined in ``ACGoogleAuthServiceInterface``.
     /// - Parameter service: Represents Google auth service.
@@ -23,7 +23,7 @@ open class FIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
         self.googleService = service
     }
     
-    /// Creates `FIRGoogleAuthProvider`
+    /// Creates `ACFIRGoogleAuthProvider`
     /// - Parameters:
     ///   - configuration: This class represents the client configuration provided by the developer.
     ///   - targetView: Area for auth window
@@ -34,7 +34,7 @@ open class FIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
         )
     }
     
-    /// Creates `FIRGoogleAuthProvider`
+    /// Creates `ACFIRGoogleAuthProvider`
     ///
     /// By default, the topmost view controller in the navigation stack must be used as the target of the view.
     /// - Parameter configuration: This class represents the client configuration provided by the developer.
@@ -70,13 +70,13 @@ open class FIRGoogleAuthProvider: ACFIRAuthProvider, ACFIRAuthPerformer {
 }
 
 // MARK: - Fabrication
-public extension ACFIRAuthPerformer where Self == FIRGoogleAuthProvider {
+public extension ACFIRAuthPerformer where Self == ACFIRGoogleAuthProvider {
     /// Creates performer object that represents `Firebase` authentication with a `Google`.
     /// - Parameters:
     ///   - clientID: Permission list. See more ``ACFacebookPermissionType``.
     ///   - targetView: The view controller to present from.
     /// - Returns: Google authorization performer.
     static func google(clientID: String, targetView: UIViewController? = .topViewController) -> ACFIRAuthPerformer {
-        FIRGoogleAuthProvider(configuration: .init(clientID: clientID), targetView: targetView)
+        ACFIRGoogleAuthProvider(configuration: .init(clientID: clientID), targetView: targetView)
     }
 }

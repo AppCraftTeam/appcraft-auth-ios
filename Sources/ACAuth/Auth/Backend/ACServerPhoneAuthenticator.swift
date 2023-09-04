@@ -49,22 +49,25 @@ public protocol ACServerPhoneAuthenticationProtocol {
 public class ACServerPhoneAuthenticator: ACServerAuthenticator, ACServerPhoneAuthenticationProtocol {
     
     // MARK: Properties
-    private var provider: ACPhoneRemoteSpecification
+    private var spec: ACPhoneRemoteSpecification
     
     // MARK: - Initialization
     /// Creates `ServerPhoneAuthenticator` with custom request executor.
     /// - Parameters:
-    ///   - provider: A model of configuration for a phone number authentication provider.
+    ///   - provider: A model that represents the access specification for a remote application.
     ///   - executor: An object that makes network requests.
-    public init(provider: ACPhoneRemoteSpecification, executor: ACRequestExecutorProtocol) {
-        self.provider = provider
+    public init(
+        spec: ACPhoneRemoteSpecification,
+        executor: ACRequestExecutorProtocol
+    ) {
+        self.spec = spec
         super.init(executor: executor)
     }
     
     /// Creates `ServerPhoneAuthenticator`
-    /// - Parameter provider: A model of configuration for a phone number authentication provider.
-    public convenience init(provider: ACPhoneRemoteSpecification) {
-        self.init(provider: provider, executor: ACRequestExecutor())
+    /// - Parameter spec: A model that represents the access specification for a remote application.
+    public convenience init(spec: ACPhoneRemoteSpecification) {
+        self.init(spec: spec, executor: ACRequestExecutor())
     }
     
     // MARK: - Service methods
@@ -76,11 +79,11 @@ public class ACServerPhoneAuthenticator: ACServerAuthenticator, ACServerPhoneAut
     open func verifyPhone<R: Codable>(number: String,keyResponse codableType: R.Type, handler: @escaping (Result<R, ACAuthError>) -> Void) {
         do {
             let request = try URLRequestGenerator(
-                source: provider.verifyPhoneSpec.source,
-                headers: provider.verifyPhoneSpec.headers,
+                source: spec.verifyPhoneSpec.source,
+                headers: spec.verifyPhoneSpec.headers,
                 parameters: .json([
-                    provider.verifyPhoneSpec.phonePassingParameterKey: number
-                ].merge(dict: provider.verifyPhoneSpec.customBodyParameters))
+                    spec.verifyPhoneSpec.phonePassingParameterKey: number
+                ].merge(dict: spec.verifyPhoneSpec.customBodyParameters))
             ).build()
             super.execute(request, response: codableType, handler: handler)
         } catch {
@@ -103,12 +106,12 @@ public class ACServerPhoneAuthenticator: ACServerAuthenticator, ACServerPhoneAut
         }
         do {
             let request = try URLRequestGenerator(
-                source: provider.verifyPhoneSpec.source,
-                headers: provider.verifyPhoneSpec.headers,
+                source: spec.verifyPhoneSpec.source,
+                headers: spec.verifyPhoneSpec.headers,
                 parameters: .json([
-                    provider.verifyCodeSpec.kKeyParameter: key,
-                    provider.verifyCodeSpec.kCodeParameter: code
-                ].merge(dict: provider.verifyPhoneSpec.customBodyParameters))
+                    spec.verifyCodeSpec.kKeyParameter: key,
+                    spec.verifyCodeSpec.kCodeParameter: code
+                ].merge(dict: spec.verifyPhoneSpec.customBodyParameters))
             ).build()
             super.execute(request, response: codableType, handler: handler)
         } catch {
